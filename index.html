@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
 </head>
-
 <body>
-    <h1>Hello World</h1>
-</body>
+    <head>
+        <h1 class=" header text-center h-14 font-mono bg-gradient-to-r from-cyan-500 to-blue-500" >Flight Travel Info</h1>
+    </head>
+    <div class="container">
+        <div class="grid grid-rows-3 grid-flow-col gap-4">
+            <div class="row-span-3">
+                <h1>Flight Search</h1>
+                <form class="flight justify-item-center grid grid-rows-4">
+                    <label class="text-black ">Start Location :</label>
+                    <input class="form-control" type="search" placeholder="city name" id="city-input">
+                    <input type="date" id="startdate" name="Start-Date">
+                    <label class="text-black ">Destination Location:</label>
+                    <input class="form-control " type="search" placeholder="city name" id="city-input">
+                    <input type="date" id="returndate" name="Return-Date">
+                    <label class="text-black ">Hotel Radius:</label>
+                    <input class="form-control " type="search" placeholder="hotel" id="hotel-radius">
+                    <button class="btn btn-primary" style="width: 100%" type="submit" id="search-button">Search</button>
+                </form>
+            </div>
+            <div class="col-span-2 ...">
+                <h1>Picture</h1>
+            </div>
+            <div class="row-span-2 col-span-2 ...">
+                <h2>History Lists</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <footer>
+            <h1>
 
+            </h1>
+        </footer>
+    </div>
+    
+    
+
+
+</body>
 </html>
