@@ -1,3 +1,5 @@
+var flightListEl = document.getElementById("");
+
 function init() {
     tripAdvisorAPI("ORD", "LAX", "2023-10-31");
 }
@@ -26,6 +28,14 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
             console.log(data.data);
             return processFlightData(data.data);
         });
+}
+
+function displayFlights(flightData) {
+    for (var i = 0; i < flightData.length; i++)
+}
+
+function addFlight(flight) {
+
 }
 
 function processFlightData(data) {
