@@ -1,0 +1,67 @@
+# Api doc notes
+
+## Trip Advisor
+
+- Base URL: https://tripadvisor16.p.rapidapi.com/api/v1/{ENDPOINT}
+
+
+### Useful Options
+- flights/searchFlights={}	*
+- desinationAirportCode={3 letter code} 	*
+- date={}	*
+- itinearyType={}	*
+- sortOrder={ML_BEST_VALUE | DURATION | PRICE | EARLIEST_OUTBOUND_DEPARTURE | LATEST_OUTBOUND_DEPARTURE | EARLIEST_OUTBOUND_ARRIVAL | LATEST_OUTBOUND_ARRIVAL}*
+- numAdults={} *
+- numSeniors={} *
+- classOfService={} *
+- Optional={}
+- returnDate={}  ** 
+#### pseudo
+-displayTo
+-use fetch results
+-take the chosen airport variable from the airport name variable
+-display flight results based on the airport name, and date selected
+-list the flight results in order from descending flight prices
+-selected flights will be saved into the local storage as an array
+
+
+## World Airports Directory
+- Base Url : https://world-airports-directory.p.rapidapi.com/{v1}{airports}{qstring}
+
+
+### Output :
+-results: Array
+-isActive *
+-AirportName *
+-city *
+-country *
+-Airport Code *
+-citycode
+-lat
+-long 
+-timezone **
+-cityunicode
+-zone 
+-countrycode 
+-id
+
+- page: Num
+- limit: Num
+- totalPages : Num
+- totalResults : Num
+
+
+
+#### Options
+ - page={page index};
+ - limit={number of results per page(10 default, 20max)}
+ - sortb={field:order}: field{any of fileds from JSON results} order{asc| desc}
+
+##### Pseudcode
+- displayTo for both of our API's
+- call event listener for click of submit button when enterring information for the flights
+- Both API's are going to fetch
+- needs function to search the database, base on the location given, to pull up airports
+- upon event listener, store city entry if valid into local storage and store all airport names displayed into your local storage
+- clear history event listener that clears local storage
+- event listener on modal for  confirm and cancel entry buttons
