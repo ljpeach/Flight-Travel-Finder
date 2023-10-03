@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width>, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Document</title>
 </head>
+
 <body>
+
     <head>
-        <h1 class=" header text-center h-14 font-mono bg-gradient-to-r from-cyan-500 to-blue-500" >Flight Travel Info</h1>
-        
-        
+        <h1 class=" header text-center h-14 font-mono bg-gradient-to-r from-cyan-500 to-blue-500">Flight Travel Info
+        </h1>
     </head>
     <div class="container">
         <div class="grid grid-rows-3 grid-flow-col gap-4">
             <div class="row-span-3">
                 <h1>Flight Search</h1>
-                <form id="search-form" class="flight justify-item-center grid grid-rows-4">
+                <form class="flight justify-item-center grid grid-rows-4">
                     <label class="text-black ">Start Location :</label>
                     <input class="form-control" type="search" placeholder="city name" id="city-input">
-                    <input type="date" id="start-date" name="Start-Date">
+                    <input type="date" id="startdate" name="Start-Date">
                     <label class="text-black ">Destination Location:</label>
                     <input class="form-control " type="search" placeholder="city name" id="city-input">
-                    <input type="date" id="return-date" name="Return-Date">
+                    <input type="date" id="returndate" name="Return-Date">
                     <label class="text-black ">Hotel Radius:</label>
                     <input class="form-control " type="search" placeholder="hotel" id="hotel-radius">
                     <button class="btn btn-primary" style="width: 100%" type="submit" id="search-button">Search</button>
                 </form>
+
             </div>
             <div class="col-span-2 ...">
                 <h1>Picture</h1>
@@ -37,17 +40,35 @@
             </div>
         </div>
     </div>
-   
-          </div>
+    <div class="container">
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+
+                <header class="w3-container w3-teal">
+                    <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
+                    <h2>Modal Header</h2>
+                </header>
+
+                <div class="w3-container">
+                    <ul>
+                        <li>Airport code</li>
+                    </ul>
+                </div>
+
+                <footer class="w3-container w3-teal">
+                    <p>Modal Footer</p>
+                </footer>
+
+            </div>
+        </div>
         <footer>
             <h1>
 
             </h1>
         </footer>
     </div>
-    
-    
-
-
+    <script src="./search.js"></script>
 </body>
+
 </html>
