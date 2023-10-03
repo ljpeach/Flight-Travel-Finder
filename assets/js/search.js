@@ -29,9 +29,36 @@ function handleSearchFormSubmit(event) {
     }
 
 
-    var queryString = './first-page.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate + '&returnDate=' + returnDate
+    var queryString = './index.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate + '&returnDate=' + returnDate
 
     location.assign(queryString);
 }
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
