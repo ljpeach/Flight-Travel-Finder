@@ -1,10 +1,10 @@
-var searchFormEl = document.querySelector('#search-form');
+var searchFormEl = document.querySelector('.search-form');
 
 function handleSearchFormSubmit(event) {
     event.preventDefault();
 
-    var startLocation = document.querySelector('#city-input').value;
-    var destination = document.querySelector("#city-input").value;
+    var startLocation = document.querySelector('#start-city-input').value;
+    var destination = document.querySelector("#destination-city-input").value;
     var startDate = document.querySelector('#start-date').value;
     var returnDate = document.querySelector('#return-date').value;
 
