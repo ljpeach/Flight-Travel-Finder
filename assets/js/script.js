@@ -12,23 +12,18 @@ function currentSlide(n) {
 function showSlides(n) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { slideIndex = 1 }
     if (n < 1) { slideIndex = slides.length }
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
 }
 
-var flightListEl = document.getElementById("");
+var flightListEl = document.getElementById("flight-results");
 
 function init() {
-    tripAdvisorAPI("ORD", "LAX", "2023-10-31");
+    displayFlights(tripAdvisorAPI("ORD", "LAX", "2023-10-31"));
 }
 
 function tripAdvisorAPI(departPort, arrivePort, date) {
@@ -58,7 +53,6 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
 }
 
 function displayFlights(flightData) {
-
     for (var i = 0; i < flightData.length; i++) {
         addFlight(flightData[i]);
     }
@@ -66,7 +60,29 @@ function displayFlights(flightData) {
 
 function addFlight(flight) {
     var flightCard = document.createElement("div");
+    var priceInfo = document.createElement("p");
+    var providedBy = document.createElement("p");
+    var purchaseLink = document.createElement("a");
+
     flightCard.className = "";
+    priceInfo.className = "";
+    providedBy.className = "";
+    purchaseLink.className = "";
+
+    if (flight.currency == flight.originalCurrency) {
+        priceInfo.textContent = `Price: ${flight.totalPrice}(${flight.currency})`;
+    }
+    else {
+        priceInfo.textContent = `Price: ${flight.totalPrice}(${flight.currency}) (originally in ${flight.originalCurrency})`;
+    }
+    providedBy.textContent = `Ticket Provided by ${flight.commerceName} on ${flight.providerId}`;
+    purchaseLink.textContent = `View ticket (external)`;
+    purchaseLink.setAttribute("href", flight.url);
+
+    flightCard.appendChild(priceInfo);
+    flightCard.appendChild(providedBy);
+    flightCard.appendChild(purchaseLink);
+
     flightListEl.appendChild(flightCard);
 }
 
