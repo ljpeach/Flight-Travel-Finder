@@ -23,7 +23,9 @@ function showSlides(n) {
     }
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
-} var flightListEl = document.getElementById("");
+}
+
+var flightListEl = document.getElementById("");
 
 function init() {
     tripAdvisorAPI("ORD", "LAX", "2023-10-31");
@@ -77,6 +79,35 @@ function processFlightData(data) {
     console.log(tripArr);
     return tripArr;
 }
+
+searchButton = document.querySelector("#search-button");
+var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
+var cityName = document.querySelector("#city-name");
+function airportSearch(cityName) {
+    var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
+    return fetch(urlQuery, {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597',
+            'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            var airports = data.results;
+            airports.forEach(results => {
+                console.log(`Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+airportSearch('Chicago');
 
 var fakeResponse = {
     "session": {
