@@ -55,16 +55,6 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
         });
 }
 
-function displayFlights(flightData) {
-    for (var i = 0; i < flightData.length; i++) {
-        addFlight(flightData[i]);
-    }
-}
-
-function addFlight(flight) {
-
-}
-
 function processFlightData(data) {
     var tripArr = [];
     var selectedFlight;
