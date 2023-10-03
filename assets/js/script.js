@@ -57,6 +57,19 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
         });
 }
 
+function displayFlights(flightData) {
+
+    for (var i = 0; i < flightData.length; i++) {
+        addFlight(flightData[i]);
+    }
+}
+
+function addFlight(flight) {
+    var flightCard = document.createElement("div");
+    flightCard.className = "";
+    flightListEl.appendChild(flightCard);
+}
+
 function processFlightData(data) {
     var tripArr = [];
     var selectedFlight;
