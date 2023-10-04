@@ -52,7 +52,7 @@ function init() {
 }
 
 function getQString() {
-    var fields = window.location.search.slice(1).split('&');
+    var fields = decodeURIComponent(window.location.search.slice(1)).split('&');
     var arg;
     for (var i = 0; i < fields.length; i++) {
         arg = fields[i].split("=");
