@@ -11,7 +11,7 @@ body {
 .search-form {
     border: 2px solid black;
     font-display: block;
-    margin: 5px;
+    margin: 20px;
     padding: 5px;
     background-color: bisque;
     border-radius: 8px;
@@ -34,7 +34,7 @@ body {
 .slideshow-container {
     max-width: 1000px;
     position: relative;
-    margin: auto;
+    margin:20px;
 }
 
 /* Hide the images by default */
@@ -132,4 +132,3 @@ body {
         opacity: 1
     }
 }
->>>>>>> main
