@@ -58,10 +58,10 @@ function addFlight(flight) {
     var priceInfo = document.createElement("p");
     var providedBy = document.createElement("p");
     var purchaseLink = document.createElement("a");
-    flightCard.className = "";
-    priceInfo.className = "";
-    providedBy.className = "";
-    purchaseLink.className = "";
+    flightCard.className = "inline-block ml-20 mb-5 max-w-sm p-6 border border-yellow-500 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700";
+    priceInfo.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
+    providedBy.className = "font-normal text-gray-700 dark:text-gray-400";
+    purchaseLink.className = "text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center";
     if (flight.currency == flight.originalCurrency) {
         priceInfo.textContent = `Price: ${flight.totalPrice}(${flight.currency})`;
     }
@@ -71,6 +71,7 @@ function addFlight(flight) {
     providedBy.textContent = `Ticket Provided by ${flight.commerceName} on ${flight.providerId}`;
     purchaseLink.textContent = `View ticket (external)`;
     purchaseLink.setAttribute("href", flight.url);
+   
     flightCard.appendChild(priceInfo);
     flightCard.appendChild(providedBy);
     flightCard.appendChild(purchaseLink);
