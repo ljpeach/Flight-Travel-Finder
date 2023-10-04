@@ -46,11 +46,11 @@
                     <label class="text-black">Start Location :</label>
                     <input id="start-city-input" class="form-control" type="search" placeholder="  city name">
                     <label class="text-black">Start Date:</label>
-                    <input id="startdate" type="date" name="Start-Date">
+                    <input type="date" id="start-date" name="Start-Date">
                     <label class="text-black">Destination Location:</label>
                     <input id="destination-city-input" class="form-control" type="search" placeholder="city name">
                     <label class="text-black">Return Date:</label>
-                    <input class="form-control" type="date" id="returndate" name="Return-Date">
+                    <input type="date" id="return-date" name="Return-Date">
                     <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
                         <select id="hotel-type-input" class="form-select">
                             <option value="5 miles">5 miles</option>
@@ -68,7 +68,7 @@
                     <!-- Modal toggle -->
                     <button
                         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        type="button" data-modal-toggle="authentication-modal">
+                        type="sumbit" data-modal-toggle="authentication-modal">
                         Enter Airport Code
                     </button>
 
@@ -80,7 +80,7 @@
                             <!-- Modal content -->
                             <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
                                 <div class="flex justify-end p-2 pl-8">
-                                    <button type="button"
+                                    <button type="submit"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                                         data-modal-toggle="authentication-modal">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -90,6 +90,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
+
                                 </div>
                                 <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" action="#">
                                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Select the airport
@@ -111,10 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div class="lists text-center">
-                <h2>History Lists</h2>
 
-            </div>
         </div>
     </div>
     <div>
@@ -127,7 +125,7 @@
     </div>
 
 
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/search.js"></script>
 </body>
 
 </html>
