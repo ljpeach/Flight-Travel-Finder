@@ -5,37 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Document</title>
 </head>
 
 <body>
     <header>
-        <h1 class="header text-center h-14 font-mono bg-gradient-to-r from-cyan-500 to-blue-500">Flight Travel Finder
-        </h1>
+        <h1 class="header text-center">Flight Travel Finder</h1>      
     </header>
-
-    <div class="grid grid-flow-row-dense grid-cols-2 space-x-4">
-        <div class="slideshow-container col-span-1 shrink">
+    <div class="grid grid-flow-row-dense grid-cols-2 space-x-2"> 
+        <div class="slideshow col-span-1 shrink">
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="./assets/images/Screenshot 2023-10-03 at 12.36.41 PM.png" style="width:100%">
-                <div class="text">Travel Now</div>
+              <div class="numbertext">1 / 3</div>
+              <img src="./assets/images/Screenshot 2023-10-03 at 12.36.41 PM.png" style="width:100%">
+              <div class="text">Travel Now ~</div>
             </div>
-
+          
             <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="./assets/images/Screenshot 2023-10-03 at 12.36.52 PM.png" style="width:100%">
-                <div class="text">Find Flight</div>
+              <div class="numbertext">2 / 3</div>
+              <img src="./assets/images/Screenshot 2023-10-03 at 12.36.52 PM.png " style="width:100%">
+              <div class="text">Find Flight </div>
             </div>
-
+          
             <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                <img src="./assets/images/Screenshot 2023-10-03 at 12.37.02 PM.png" style="width:100%">
-                <div class="text">Order Soon</div>
+              <div class="numbertext">3 / 3</div>
+              <img src="./assets/images/Screenshot 2023-10-03 at 12.37.02 PM.png" style="width:100%">
+              <div class="text">Order Soon !!!</div>
             </div>
-
+          
             <!-- Next and previous buttons -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -43,27 +41,37 @@
 
         <div class="col-span-1">
             <div class="search-form">
-                <h1>Flight Search</h1>
+                <h1>Flight Search :</h1>
                 <form class="flight grid grid-rows-4">
                     <label class="text-black">Start Location :</label>
-                    <input class="form-control" type="search" placeholder="city name" id="start-city-input">
+                    <input class="form-control" type="search" placeholder="  city name" id="start-city-input">
+                    <label class="text-black">Start Date:</label>
                     <input type="date" id="startdate" name="Start-Date">
                     <label class="text-black">Destination Location:</label>
-                    <input class="form-control" type="search" placeholder="city name" id="destination-city-input">
+                    <input class="form-control" type="search" placeholder="  city name" id="destination-city-input">
+                    <label class="text-black">Return Date:</label>
                     <input type="date" id="returndate" name="Return-Date">
-                    <label class="text-black">Hotel Radius:</label>
-                    <input class="form-control" type="search" placeholder="hotel" id="hotel-radius">
-                    <button class="btn btn-primary rounded-full" style="width: 100%" type="submit"
-                        id="search-button">Search</button>
+                    <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
+                        <select id="hotel-type-input" class="form-select">
+                            <option value="5 miles">5 miles</option>
+                            <option value="10 miles">10 miles</option>
+                            <option value="15 miles">15 miles</option>
+                            <option value="20 miles">20 miles</option>
+                        </select>
+                    <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
+                    <button class="cursor-pointer" style="width: 100%" type="button" id="search-button">Search</button>
                 </form>
-            </div>
-
-            <div class="auto-rows-auto">
-                <h2>History Lists</h2>
             </div>
         </div>
     </div>
+<div class="lists text-center">
+    <h2>History Lists</h2>
+
+</div>
+
+
     <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
+
