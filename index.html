@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Flight Travel Finder</title>
 </head>
@@ -61,6 +60,7 @@
                     </select>
                     <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
                     <button class="cursor-pointer" style="width: 100%" type="button" id="search-button">Search</button>
+
                 </form>
                 <!-- This is an example component -->
                 <div class="max-w-2xl mx-auto">
@@ -79,7 +79,7 @@
                         <div class="relative w-full max-w-md px-4 h-full md:h-auto">
                             <!-- Modal content -->
                             <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
-                                <div class="flex justify-end p-2">
+                                <div class="flex justify-end p-2 pl-8">
                                     <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                                         data-modal-toggle="authentication-modal">
@@ -90,27 +90,18 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <select name="airportCode" id="select-airport-code"></select>
                                 </div>
                                 <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" action="#">
-                                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Enter the airport
+                                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Select the airport
                                         codes below:</h3>
                                     <div>
                                         <label for="departure-search-bar"
                                             class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Departing
                                             From:</label>
-                                        <input type="search" name="search" id="departure-airport-code"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder=" 3 digit code" required="">
-                                    </div>
-                                    <div>
-                                        <label for="destination-search bar"
-                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Arrival
-                                            Destination:</label>
-                                        <input type="search" name="search" id="arrival-airport-code" placeholder=""
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            required="">
-                                    </div>
+                                        <select id="departure-airport-code" class="form-select">
+                                            <option value=" ">3 digit code</option>
+                                        </select>
+
                                 </form>
                             </div>
                         </div>
@@ -124,9 +115,19 @@
                 <h2>History Lists</h2>
 
             </div>
+        </div>
+    </div>
+    <div>
+        <ul id="flight-results">
+        </ul>
+    </div>
+    <div class="lists text-center">
+        <h2>History Lists</h2>
+
+    </div>
 
 
-            <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
