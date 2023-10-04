@@ -126,7 +126,7 @@ function processFlightData(data) {
     return tripArr;
 }
 
-var apiKey = '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea';
+var apiKey = 'b81b52b29amshcc42c9660ccacd0p19499djsne3e3a9bc99bd';
 var departureCityInput = document.querySelector("#start-city-input");
 var arrivalCityInput = document.querySelector("#destination-city-input");
 var departureAirportArray = [];
@@ -137,7 +137,7 @@ function airportSearch(cityName, airportArray) {
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
+            'x-rapidapi-key': 'b81b52b29amshcc42c9660ccacd0p19499djsne3e3a9bc99bd',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
@@ -159,16 +159,18 @@ function airportSearch(cityName, airportArray) {
                 airportArray.push(airport);
 
             });
+            localStorage.setItem("departureLocationAirports", JSON.stringify(departureAirportArray));
+            localStorage.setItem("arrivalLocationAirports", JSON.stringify(arrivalAirportArray));
             console.log(airportArray);
         })
         .catch(error => console.error('Error:', error));
 }
 
+
+
 document.querySelector("#search-button").onclick = function () {
     airportSearch(departureCityInput.value, departureAirportArray);
-    localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray));
     airportSearch(arrivalCityInput.value, arrivalAirportArray);
-    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray));
 };
 
 
