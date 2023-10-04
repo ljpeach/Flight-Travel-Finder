@@ -100,12 +100,13 @@ function processFlightData(data) {
 searchButton = document.querySelector("#search-button");
 var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
 var cityName = document.querySelector("#city-name");
+var airportArray = [];
 function airportSearch(cityName) {
     var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597',
+            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
@@ -120,7 +121,14 @@ function airportSearch(cityName) {
             var airports = data.results;
             airports.forEach(results => {
                 console.log(`Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
+                var airport = {
+                    name: results.AirportName,
+                    code: results.AirportCode
+                }
+                airportArray.push(airport);
+
             });
+            console.log(airportArray);
         })
         .catch(error => console.error('Error:', error));
 }
