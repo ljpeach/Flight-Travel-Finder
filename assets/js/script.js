@@ -46,6 +46,31 @@ var flightListEl = document.getElementById("flight-results");
 
 function init() {
     displayFlights(tripAdvisorAPI("ORD", "LAX", "2023-10-31"));
+    if (window.location.search) {
+        getQString();
+    }
+}
+
+function getQString() {
+    var fields = window.location.search.slice(1).split('&');
+    var arg;
+    for (var i = 0; i < fields.length; i++) {
+        arg = fields[i].split("=");
+        switch (arg[0]) {
+            case 'Departure':
+                departureCityInput.value = arg[1];
+                break;
+            case 'destination':
+                arrivalCityInput.value = arg[1];
+                break;
+            case 'startDate':
+                startDateInput.value = arg[1];
+                break;
+            case 'returnDate':
+                returnDateInput.value = arg[1];
+                break;
+        }
+    }
 }
 
 function displayFlights(flightData) {
@@ -129,6 +154,8 @@ function processFlightData(data) {
 var apiKey = 'b81b52b29amshcc42c9660ccacd0p19499djsne3e3a9bc99bd';
 var departureCityInput = document.querySelector("#start-city-input");
 var arrivalCityInput = document.querySelector("#destination-city-input");
+var startDateInput = document.querySelector("#startdate");
+var returnDateInput = document.querySelector("#returndate");
 var departureAirportArray = [];
 var arrivalAirportArray = [];
 
@@ -169,8 +196,12 @@ function airportSearch(cityName, airportArray) {
 
 
 document.querySelector("#search-button").onclick = function () {
-    airportSearch(departureCityInput.value, departureAirportArray);
-    airportSearch(arrivalCityInput.value, arrivalAirportArray);
+    airportSearch(departureCityInput.value, departureAirportArray).then(function () {
+        localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray))
+    });
+    airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
+        localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
+    });
 };
 
 
