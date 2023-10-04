@@ -140,11 +140,13 @@ function airportSearch(cityName) {
             airportArray.push(airport);
 
         });
+
+        localStorage.setItem("airportArray", JSON.stringify(airportArray));
         console.log(airportArray); 
     })
     .catch(error => console.error('Error:', error));
 }
-airportSearch('Chicago');
+airportSearch("Chicago");
 
 var fakeResponse = {
     "session": {
