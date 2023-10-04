@@ -20,6 +20,26 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
 }
 
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
 var flightListEl = document.getElementById("flight-results");
 
 function init() {
@@ -118,7 +138,7 @@ function airportSearch(cityName) {
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597',
+            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
