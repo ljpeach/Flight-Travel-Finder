@@ -44,11 +44,11 @@
                 <h1>Flight Search :</h1>
                 <form class="flight grid grid-rows-4">
                     <label class="text-black">Start Location :</label>
-                    <input class="form-control" type="search" placeholder="  city name" id="start-city-input">
+                    <input id="start-city-input" class="form-control" type="search" placeholder="  city name">
                     <label class="text-black">Start Date:</label>
-                    <input class="form-control" type="date" id="startdate" name="Start-Date">
+                    <input id="startdate" type="date" name="Start-Date">
                     <label class="text-black">Destination Location:</label>
-                    <input class="form-control" type="search" placeholder="  city name" id="destination-city-input">
+                    <input id="destination-city-input" class="form-control" type="search" placeholder="city name">
                     <label class="text-black">Return Date:</label>
                     <input class="form-control" type="date" id="returndate" name="Return-Date">
                     <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
@@ -61,49 +61,58 @@
                     <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
                     <button class="cursor-pointer" style="width: 100%" type="submit" id="search-button">Search</button>
 
-                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        type="button">
-                        Press to type in Airport Code
+                </form>
+                <!-- This is an example component -->
+                <div class="max-w-2xl mx-auto">
+
+                    <!-- Modal toggle -->
+                    <button
+                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button" data-modal-toggle="authentication-modal">
+                        Enter Airport Code
                     </button>
 
-                    <div id="popup-modal" tabindex="-1"
-                        class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="relative w-full max-w-md max-h-full">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="popup-modal">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="p-6 text-center">
-                                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure
-                                        you want to delete this product?</h3>
-                                    <button data-modal-hide="popup-modal" type="button"
-                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                        Yes, I'm sure
+
+                    <!-- Main modal -->
+                    <div id="authentication-modal" aria-hidden="true"
+                        class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+                        <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                            <!-- Modal content -->
+                            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
+                                <div class="flex justify-end p-2 pl-8">
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                                        data-modal-toggle="authentication-modal">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
                                     </button>
-                                    <button data-modal-hide="popup-modal" type="button"
-                                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
-                                        cancel</button>
                                 </div>
+                                <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" action="#">
+                                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Select the airport
+                                        codes below:</h3>
+                                    <div>
+                                        <label for="departure-search-bar"
+                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Departing
+                                            From:</label>
+                                        <select id="departure-airport-code" class="form-select">
+                                            <option value=" ">3 digit code</option>
+                                        </select>
+
+                                </form>
                             </div>
                         </div>
-                    </div>
 
-                </form>
+                        <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+
+                    </div>
+                </div>
+            </div>
+            <div class="lists text-center">
+                <h2>History Lists</h2>
 
             </div>
         </div>
