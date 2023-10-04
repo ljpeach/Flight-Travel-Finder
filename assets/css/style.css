@@ -124,3 +124,11 @@ margin-bottom: 20px;
     border:3px dotted blue;
 
 }
+.footer {
+   position:fixed;
+    margin-bottom: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+ }
