@@ -130,15 +130,15 @@ function processFlightData(data) {
 }
 
 searchButton = document.querySelector("#search-button");
-var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
-var cityName = document.querySelector("#city-name");
+var apiKey = '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea';
+var cityName = document.querySelector("#start-city-input");
 var airportArray = [];
 function airportSearch(cityName) {
     var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
+            'x-rapidapi-key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
