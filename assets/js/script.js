@@ -130,6 +130,7 @@ function airportSearch(cityName, airportArray) {
                 airportArray.push(airport);
 
             });
+            localStorage.setItem("airportArray", JSON.stringify(airportArray));
             console.log(airportArray);
         })
         .catch(error => console.error('Error:', error));
@@ -137,7 +138,9 @@ function airportSearch(cityName, airportArray) {
 
 document.querySelector("#search-button").onclick = function(){
     airportSearch(departureCityInput.value, departureAirportArray);
+    localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray));
     airportSearch(arrivalCityInput.value, arrivalAirportArray);
+    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray));
 };
 
 
