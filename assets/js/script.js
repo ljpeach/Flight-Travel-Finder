@@ -12,18 +12,40 @@ function currentSlide(n) {
 function showSlides(n) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { slideIndex = 1 }
     if (n < 1) { slideIndex = slides.length }
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     slides[slideIndex - 1].style.display = "block";
+    
 }
 
-var flightListEl = document.getElementById("flight-results");
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+var flightListEl = document.getElementById("");
 
 function init() {
-    displayFlights(tripAdvisorAPI("ORD", "LAX", "2023-10-31"));
+    tripAdvisorAPI("ORD", "LAX", "2023-10-31");
 }
 
 function tripAdvisorAPI(departPort, arrivePort, date) {
@@ -52,40 +74,6 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
         });
 }
 
-function displayFlights(flightData) {
-    for (var i = 0; i < flightData.length; i++) {
-        addFlight(flightData[i]);
-    }
-}
-
-function addFlight(flight) {
-    var flightCard = document.createElement("div");
-    var priceInfo = document.createElement("p");
-    var providedBy = document.createElement("p");
-    var purchaseLink = document.createElement("a");
-
-    flightCard.className = "";
-    priceInfo.className = "";
-    providedBy.className = "";
-    purchaseLink.className = "";
-
-    if (flight.currency == flight.originalCurrency) {
-        priceInfo.textContent = `Price: ${flight.totalPrice}(${flight.currency})`;
-    }
-    else {
-        priceInfo.textContent = `Price: ${flight.totalPrice}(${flight.currency}) (originally in ${flight.originalCurrency})`;
-    }
-    providedBy.textContent = `Ticket Provided by ${flight.commerceName} on ${flight.providerId}`;
-    purchaseLink.textContent = `View ticket (external)`;
-    purchaseLink.setAttribute("href", flight.url);
-
-    flightCard.appendChild(priceInfo);
-    flightCard.appendChild(providedBy);
-    flightCard.appendChild(purchaseLink);
-
-    flightListEl.appendChild(flightCard);
-}
-
 function processFlightData(data) {
     var tripArr = [];
     var selectedFlight;
@@ -109,44 +97,49 @@ function processFlightData(data) {
     return tripArr;
 }
 
-searchButton = document.querySelector("#search-button");
-var apiKey = '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea';
-var cityName = document.querySelector("#start-city-input");
-var airportArray = [];
-function airportSearch(cityName) {
+var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
+var departureCityInput = document.querySelector("#start-city-input");
+var arrivalCityInput = document.querySelector("#destination-city-input");
+var departureAirportArray = [];
+var arrivalAirportArray = [];
+
+function airportSearch(cityName, airportArray) {
     var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
+            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-    var airports = data.results;
-        airports.forEach(results => {
-            console.log(`Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
-            var airport = {
-                name: results.AirportName,
-                code: results.AirportCode
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-            airportArray.push(airport);
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            var airports = data.results;
+            airports.forEach(results => {
+                console.log(`Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
+                var airport = {
+                    name: results.AirportName,
+                    code: results.AirportCode
+                }
+                airportArray.push(airport);
 
-        });
-
-        localStorage.setItem("airportArray", JSON.stringify(airportArray));
-        console.log(airportArray); 
-    })
-    .catch(error => console.error('Error:', error));
+            });
+            console.log(airportArray);
+        })
+        .catch(error => console.error('Error:', error));
 }
-airportSearch("Chicago");
+
+document.querySelector("#search-button").onclick = function(){
+    airportSearch(departureCityInput.value, departureAirportArray);
+    airportSearch(arrivalCityInput.value, arrivalAirportArray);
+};
+
 
 var fakeResponse = {
     "session": {
