@@ -110,7 +110,7 @@ function processFlightData(data) {
 }
 
 searchButton = document.querySelector("#search-button");
-var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
+var apiKey = '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea';
 var cityName = document.querySelector("#start-city-input");
 var airportArray = [];
 function airportSearch(cityName) {
@@ -118,7 +118,7 @@ function airportSearch(cityName) {
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597',
+            'x-rapidapi-key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
