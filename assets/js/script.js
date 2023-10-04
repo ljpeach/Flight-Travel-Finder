@@ -95,7 +95,7 @@ function processFlightData(data) {
 
 searchButton = document.querySelector("#search-button");
 var apiKey = 'bfd8b2da59msh538a392bc430a11p19e389jsn9b895227b597';
-var cityName = document.querySelector("#city-name");
+var cityName = document.querySelector("#start-city-input");
 var airportArray = [];
 function airportSearch(cityName) {
     var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
