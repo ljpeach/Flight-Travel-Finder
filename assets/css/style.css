@@ -20,14 +20,17 @@ margin-bottom: 20px;
 .search-form {
     border: 2px solid black;
     font-display: block;
-    margin: auto;
+    margin-right: 50px;
     padding: 5px;
     background-color:bisque;
     border-radius: 8px; 
     max-width: 800px;
   
 }
-
+.form-control{
+    position: relative;
+    width:auto;
+}
 /* Button styling */
 #search-button {
     border: 3px solid #4CAF50;
@@ -45,7 +48,7 @@ margin-bottom: 20px;
     max-width: 1000px;
     position: relative;
     margin:auto;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 /* Hide the images by default */
