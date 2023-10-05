@@ -178,9 +178,6 @@ function getQString() {
             case 'startDate':
                 startDateInput.value = arg[1];
                 break;
-            case 'returnDate':
-                returnDateInput.value = arg[1];
-                break;
         }
     }
 }
