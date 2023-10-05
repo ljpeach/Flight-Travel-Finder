@@ -49,10 +49,11 @@ function init() {
     if (window.location.search) {
         getQString();
     }
-    var obj1 = [{ "name": "Chicago", "code": "ORD" }];
-    var obj2 = [{ "name": "Los Angeles", "code": "LAX" }];
-    handleModal(obj1, obj2);
+    // var obj1 = [{ "name": "Chicago", "code": "ORD" }];
+    // var obj2 = [{ "name": "Los Angeles", "code": "LAX" }];
+    // handleModal(obj1, obj2);
     loadHistory();
+    loadPorts();
 }
 
 function handleModal(departObj, arriveObj) {
@@ -99,7 +100,6 @@ function handleModalCode(event) {
         source = departCodeField.selectedOptions[0].getAttribute("data-code");
         destination = arriveCodeField.selectedOptions[0].getAttribute("data-code");
         date = startDateInput.value;
-        console.log(source, destination, date);
         var newHistory = { source: source, destination: destination, date: date };
         var isReallyNew = true;
         for (var i = 0; i < searchHistory.length; i++) {
@@ -109,7 +109,6 @@ function handleModalCode(event) {
                 isReallyNew = false;
             }
         }
-        console.log(searchHistory.includes(newHistory));
         if (isReallyNew) {
             searchHistory.push(newHistory);
             addHistory(newHistory);
@@ -122,12 +121,10 @@ function handleModalCode(event) {
 
 var searchHistory = [];
 function saveHistory() {
-    console.log(searchHistory);
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 function loadHistory() {
     searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
-    console.log(searchHistory);
     if (!searchHistory) {
         searchHistory = [];
     }
@@ -151,7 +148,6 @@ function addHistory(historicalObj) {
 historyEl.addEventListener("click", function (event) {
     if (event.target.tagName.toLowerCase() == "button") {
         var liEls = historyEl.children;
-        console.log(liEls);
         for (var i = 0; i < liEls.length; i++) {
             if (liEls[i] === event.target.parentElement) {
                 searchHistory.splice(i, 1);
@@ -165,7 +161,6 @@ historyEl.addEventListener("click", function (event) {
     source = event.target.getAttribute("data-src");
     dest = event.target.getAttribute("data-dest");
     date = event.target.getAttribute("data-date");
-    console.log(source, dest, date);
     displayFlights(tripAdvisorAPI(source, dest, date));
 
 });
@@ -195,7 +190,7 @@ function getQString() {
 
 async function displayFlights(flightData) {
     while (flightListEl.children.length) {
-        flightListEl.removeChild(selectMenu.firstChild);
+        flightListEl.removeChild(flightListEl.firstChild);
     }
     flightData = await flightData;
     for (var i = 0; i < flightData.length; i++) {
@@ -236,18 +231,15 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
     }
-    return processFlightData(JSON.parse(fakeResponse));
+    // return processFlightData(JSON.parse(fakeResponse));
     return fetch(urlQuery, options)
         .then(function (response) {
             if (!response.ok) {
-                console.log(response);
                 return;
             }
-            console.log(response);
             return response.json();
         })
         .then(function (data) {
-            // console.log(data.data);
             return processFlightData(data.data);
         });
 }
@@ -281,13 +273,14 @@ var startDateInput = document.querySelector("#start-date");
 var returnDateInput = document.querySelector("#return-date");
 var departureAirportArray = [];
 var arrivalAirportArray = [];
+var fromAPI = [];
 
 function airportSearch(cityName, airportArray) {
     var urlQuery = `https://world-airports-directory.p.rapidapi.com/v1/airports/${cityName}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '64a29eb2a3mshfa5dc77bb05f84dp16f2d4jsn445ebf2e74b4',
+            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
@@ -298,10 +291,8 @@ function airportSearch(cityName, airportArray) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             var airports = data.results;
             airports.forEach(results => {
-                console.log(`City Name: ${results.city}, Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
                 var airport = {
                     city: results.city,
                     name: results.AirportName,
@@ -310,43 +301,59 @@ function airportSearch(cityName, airportArray) {
                 airportArray.push(airport);
 
             });
-            console.log(airportArray);
+            return airportArray;
         })
         .catch(error => console.error('Error:', error));
 }
-function storeLocalStorage() {
-    localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray));
-    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray));
+
+function savePorts() {
+    localStorage.setItem("fromApi", JSON.stringify(fromAPI));
 }
 
-
-document.querySelector("#search-button").onclick = function () {
-    callAirportSearch();
-}
-
-function callAirportSearch() {
-    var departureCity = departureCityInput.value;
-    var arrivalCity = arrivalCityInput.value;
-
-    // Use Promise.all to wait for both fetches to complete
-    Promise.all([
-        airportSearch(departureCity, departureAirportArray),
-        airportSearch(arrivalCity, arrivalAirportArray)
-    ]).then(() => {
-        storeLocalStorage();
-        checkInput();
-    });
-}
-function checkInput(cityName, airportArray) {
-    var cityName = departureCityInput.value || arrivalCityInput.value;
-    if (departureAirportArray.includes(cityName) || arrivalAirportArray.includes(cityName)) {
-        airportArray.push(airport);
+function loadPorts() {
+    fromAPI = JSON.parse(localStorage.getItem("fromApi"));
+    if (fromAPI == null) {
+        fromAPI = [];
     }
 }
-airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
-    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
-});
 
+document.getElementById("search-button").addEventListener("click", async function (event) {
+    event.preventDefault();
+    var source = departureCityInput.value;
+    var dest = arrivalCityInput.value;
+    var isFound = false;
+    var departure;
+    var arrival;
+    var i;
+    for (i = 0; i < fromAPI.length; i++) {
+        if (fromAPI[i].name === source) {
+            isFound = true;
+            departure = fromAPI[i].codes;
+            break;
+        }
+    }
+    if (!isFound) {
+        departure = [];
+        departure = await airportSearch(source, departure);
+        fromAPI.push({ name: source, codes: departure });
+        savePorts();
+    }
+    isFound = false;
+    for (i = 0; i < fromAPI.length; i++) {
+        if (fromAPI[i].name === dest) {
+            isFound = true;
+            arrival = fromAPI[i].codes;
+            break;
+        }
+    }
+    if (!isFound) {
+        arrival = [];
+        arrival = await airportSearch(dest, arrival);
+        fromAPI.push({ name: dest, codes: arrival });
+        savePorts();
+    }
+    handleModal(departure, arrival);
+});
 
 document.getElementById("modal-body").addEventListener("click", handleModalCode);
 
