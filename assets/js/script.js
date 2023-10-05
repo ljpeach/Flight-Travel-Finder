@@ -50,6 +50,7 @@ function init() {
         getQString();
     }
     // handleModal(JSON.parse(localStorage.getItem("departureLocation")), JSON.parse(localStorage.getItem("arrivalLocation")));
+    // addHistory();
 }
 
 function handleModal(departObj, arriveObj) {
@@ -101,9 +102,37 @@ function handleModalCode(event) {
     }
 }
 
-async function cityToCode() {
+var searchHistory = [];
+function saveHistory() {
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+function loadHistory() {
+    searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistory) {
+        searchHistory = [];
+    }
+    for (var i = 0; i < searchHistory.length; i++) {
+        addHistory(searchHistory[i]);
+    }
+}
+var historyEl = document.getElementById("search-history");
+function addHistory(historicalObj) {
+    var historyBox = document.createElement("li");
+    historyBox.textContent = "example"
+    var removeBtn = document.createElement("button");
+    removeBtn.textContent = "X";
+    historyBox.append(removeBtn);
+    historyEl.append(historyBox);
 
 }
+historyEl.addEventListener("click", function (event) {
+    if (event.target.tagName.toLowerCase() == "button") {
+        event.target.parentElement.remove();
+        return;
+    }
+
+});
+
 
 function getQString() {
     var fields = decodeURIComponent(window.location.search.slice(1)).split('&');
