@@ -47,6 +47,7 @@ var flightListEl = document.getElementById("flight-results");
 function init() {
     if (window.location.search) {
         getQString();
+        document.getElementById("search-button").dispatchEvent(new Event('click'));
     }
     loadHistory();
     loadPorts();
@@ -176,9 +177,6 @@ function getQString() {
                 break;
             case 'startDate':
                 startDateInput.value = arg[1];
-                break;
-            case 'returnDate':
-                returnDateInput.value = arg[1];
                 break;
         }
     }
