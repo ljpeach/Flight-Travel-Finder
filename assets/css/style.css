@@ -23,12 +23,17 @@ p {
 .search-form {
     border: 2px solid black;
     font-display: block;
-    margin: auto;
+    margin-right: 50px;
     padding: 5px;
     background-color: bisque;
     border-radius: 8px;
     max-width: 800px;
 
+}
+
+.form-control {
+    position: relative;
+    width: auto;
 }
 
 /* Button styling */
@@ -47,8 +52,11 @@ p {
 .slideshow {
     max-width: 1000px;
     position: relative;
-    margin: auto;
+    <<<<<<< HEAD margin: auto;
     margin-left: 100px;
+    =======margin: auto;
+    margin-left: 50px;
+    >>>>>>>main
 }
 
 /* Hide the images by default */
