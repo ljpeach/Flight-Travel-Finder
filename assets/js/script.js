@@ -49,7 +49,7 @@ function init() {
     if (window.location.search) {
         getQString();
     }
-    // handleModal(JSON.parse(localStorage.getItem("arrivalLocation")));
+    handleModal(JSON.parse(localStorage.getItem("arrivalLocation")));
 }
 
 var selectMenu = document.getElementById("departure-airport-code");
@@ -128,7 +128,7 @@ function addFlight(flight) {
     providedBy.textContent = `Ticket Provided by ${flight.commerceName} on ${flight.providerId}`;
     purchaseLink.textContent = `View ticket (external)`;
     purchaseLink.setAttribute("href", flight.url);
-   
+
     flightCard.appendChild(priceInfo);
     flightCard.appendChild(providedBy);
     flightCard.appendChild(purchaseLink);
@@ -187,8 +187,8 @@ function processFlightData(data) {
 var apiKey = '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea';
 var departureCityInput = document.querySelector("#start-city-input");
 var arrivalCityInput = document.querySelector("#destination-city-input");
-var startDateInput = document.querySelector("#startdate");
-var returnDateInput = document.querySelector("#returndate");
+var startDateInput = document.querySelector("#start-date");
+var returnDateInput = document.querySelector("#return-date");
 var departureAirportArray = [];
 var arrivalAirportArray = [];
 
