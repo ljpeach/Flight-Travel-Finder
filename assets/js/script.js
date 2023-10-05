@@ -49,7 +49,7 @@ function init() {
     if (window.location.search) {
         getQString();
     }
-    // handleModal(JSON.parse(localStorage.getItem("departureLocation")), JSON.parse(localStorage.getItem("arrivalLocation")));
+    handleModal(JSON.parse(localStorage.getItem("departureLocation")), JSON.parse(localStorage.getItem("arrivalLocation")));
     // addHistory();
 }
 
