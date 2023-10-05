@@ -49,8 +49,10 @@ function init() {
     if (window.location.search) {
         getQString();
     }
-    // handleModal(JSON.parse(localStorage.getItem("departureLocation")), JSON.parse(localStorage.getItem("arrivalLocation")));
-    // addHistory();
+    var obj1 = [{ "name": "Chicago", "code": "ORD" }];
+    var obj2 = [{ "name": "Los Angeles", "code": "LAX" }];
+    handleModal(obj1, obj2);
+    loadHistory();
 }
 
 function handleModal(departObj, arriveObj) {
@@ -98,16 +100,34 @@ function handleModalCode(event) {
         destination = arriveCodeField.selectedOptions[0].getAttribute("data-code");
         date = startDateInput.value;
         console.log(source, destination, date);
+        var newHistory = { source: source, destination: destination, date: date };
+        var isReallyNew = true;
+        for (var i = 0; i < searchHistory.length; i++) {
+            if (searchHistory[i].source === newHistory.source &&
+                searchHistory[i].destination === newHistory.destination &&
+                searchHistory[i].date === newHistory.date) {
+                isReallyNew = false;
+            }
+        }
+        console.log(searchHistory.includes(newHistory));
+        if (isReallyNew) {
+            searchHistory.push(newHistory);
+            addHistory(newHistory);
+        }
+        saveHistory();
         displayFlights(tripAdvisorAPI(source, destination, date));
+
     }
 }
 
 var searchHistory = [];
 function saveHistory() {
+    console.log(searchHistory);
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 function loadHistory() {
     searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    console.log(searchHistory);
     if (!searchHistory) {
         searchHistory = [];
     }
@@ -115,19 +135,28 @@ function loadHistory() {
         addHistory(searchHistory[i]);
     }
 }
+
 var historyEl = document.getElementById("search-history");
 function addHistory(historicalObj) {
     var historyBox = document.createElement("li");
-    historyBox.textContent = "example"
+    historyBox.textContent = `Departure: ${historicalObj.source}\nDestination: ${historicalObj.destination}\nDate: ${historicalObj.date}`
     var removeBtn = document.createElement("button");
     removeBtn.textContent = "X";
     historyBox.append(removeBtn);
     historyEl.append(historyBox);
-
 }
 historyEl.addEventListener("click", function (event) {
     if (event.target.tagName.toLowerCase() == "button") {
+        var liEls = historyEl.children;
+        console.log(liEls);
+        for (var i = 0; i < liEls.length; i++) {
+            if (liEls[i] === event.target.parentElement) {
+                searchHistory.splice(i, 1);
+                break;
+            }
+        }
         event.target.parentElement.remove();
+        saveHistory();
         return;
     }
 
@@ -261,7 +290,7 @@ function airportSearch(cityName, airportArray) {
             console.log(data);
             var airports = data.results;
             airports.forEach(results => {
-                console.log( `City Name: ${results.city}, Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
+                console.log(`City Name: ${results.city}, Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
                 var airport = {
                     city: results.city,
                     name: results.AirportName,
@@ -277,14 +306,14 @@ function airportSearch(cityName, airportArray) {
 function storeLocalStorage() {
     localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray));
     localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray));
-    }
+}
 
 
-    document.querySelector("#search-button").onclick = function () {
+document.querySelector("#search-button").onclick = function () {
     callAirportSearch();
-    }
+}
 
-    function callAirportSearch(){
+function callAirportSearch() {
     var departureCity = departureCityInput.value;
     var arrivalCity = arrivalCityInput.value;
 
@@ -297,15 +326,15 @@ function storeLocalStorage() {
         checkInput();
     });
 }
-function checkInput(cityName, airportArray){
+function checkInput(cityName, airportArray) {
     var cityName = departureCityInput.value || arrivalCityInput.value;
-    if (departureAirportArray.includes(cityName) || arrivalAirportArray.includes(cityName)){
+    if (departureAirportArray.includes(cityName) || arrivalAirportArray.includes(cityName)) {
         airportArray.push(airport);
     }
 }
-    airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
-        localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
-    });
+airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
+    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
+});
 
 
 document.getElementById("modal-body").addEventListener("click", handleModalCode);
