@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
+
     <title>Flight Travel Finder</title>
 </head>
 
 <body>
-    <header>
-        <h1 class="header text-center">Flight Travel Finder</h1>
+    <header class="header">
+        <img src="./assets/images/png-clipart-airplane-logo-aircraft-airplane-text-photography.png" alt="logo">
+        <h1 class="text-center">Flight Travel Finder</h1>
+        <h2>Date & Time:<span id="time-display"></span></h2>
     </header>
     <div class="grid grid-flow-row-dense grid-cols-2 space-x-2">
         <div class="slideshow col-span-1 shrink">
@@ -51,16 +54,7 @@
                     <input id="destination-city-input" class="form-control" type="search" placeholder="city name">
                     <label class="text-black">Return Date:</label>
                     <input type="date" id="return-date" name="Return-Date">
-                    <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
-                    <select id="hotel-type-input" class="form-select">
-                        <option value="5 miles">5 miles</option>
-                        <option value="10 miles">10 miles</option>
-                        <option value="15 miles">15 miles</option>
-                        <option value="20 miles">20 miles</option>
-                    </select>
-                    <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
                     <button class="cursor-pointer" style="width: 100%" type="submit" id="search-button">Search</button>
-
                 </form>
                 <!-- This is an example component -->
                 <div class="max-w-2xl mx-auto">
@@ -115,6 +109,12 @@
         </div>
     </div>
     <script src="./assets/js/search.js"></script>
+    <script src="./assets/js/slide.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>
