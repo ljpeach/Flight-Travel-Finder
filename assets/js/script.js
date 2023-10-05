@@ -221,7 +221,7 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
     var options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
+            'X-RapidAPI-Key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
     }
