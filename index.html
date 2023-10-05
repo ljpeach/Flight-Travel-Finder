@@ -52,12 +52,12 @@
                     <label class="text-black">Return Date:</label>
                     <input type="date" id="return-date" name="Return-Date">
                     <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
-                        <select id="hotel-type-input" class="form-select">
-                            <option value="5 miles">5 miles</option>
-                            <option value="10 miles">10 miles</option>
-                            <option value="15 miles">15 miles</option>
-                            <option value="20 miles">20 miles</option>
-                        </select>
+                    <select id="hotel-type-input" class="form-select">
+                        <option value="5 miles">5 miles</option>
+                        <option value="10 miles">10 miles</option>
+                        <option value="15 miles">15 miles</option>
+                        <option value="20 miles">20 miles</option>
+                    </select>
                     <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
                     <button class="cursor-pointer" style="width: 100%" type="submit" id="search-button">Search</button>
 
@@ -66,7 +66,7 @@
                 <div class="max-w-2xl mx-auto">
 
                     <!-- Modal toggle -->
-                    <button
+                    <button id="modal-btn"
                         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         type="sumbit" data-modal-toggle="authentication-modal">
                         Enter Airport Code
@@ -112,19 +112,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div>
-        <ul id="flight-results">
-        </ul>
-    </div>
-    <div class="lists text-center">
-        <h2>History Lists</h2>
-
-    </div>
-
-
     <script src="./assets/js/search.js"></script>
 </body>
 
