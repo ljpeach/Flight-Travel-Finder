@@ -29,7 +29,7 @@ function handleSearchFormSubmit(event) {
   }
 
 
-  var queryString = './index.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate + '&returnDate=' + returnDate
+  var queryString = './search.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate + '&returnDate=' + returnDate
 
   location.assign(queryString);
 }
@@ -58,3 +58,5 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "block";
 }
+
+

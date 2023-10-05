@@ -44,11 +44,11 @@
                 <h1>Flight Search :</h1>
                 <form class="flight grid grid-rows-4">
                     <label class="text-black">Start Location :</label>
-                    <input id="start-city-input" class="form-control" type="search" placeholder="  city name">
+                    <input class="form-control" type="search" placeholder="  city name" id="start-city-input">
                     <label class="text-black">Start Date:</label>
                     <input type="date" id="start-date" name="Start-Date">
                     <label class="text-black">Destination Location:</label>
-                    <input id="destination-city-input" class="form-control" type="search" placeholder="city name">
+                    <input class="form-control" type="search" placeholder="  city name" id="destination-city-input">
                     <label class="text-black">Return Date:</label>
                     <input type="date" id="return-date" name="Return-Date">
                     <label for="hotel-radius-input" class="form-label">Hotel Radius</label>
@@ -60,7 +60,6 @@
                     </select>
                     <!-- <input class="form-control" type="search" placeholder="hotel" id="hotel-radius"> -->
                     <button class="cursor-pointer" style="width: 100%" type="submit" id="search-button">Search</button>
-
                 </form>
                 <!-- This is an example component -->
                 <div class="max-w-2xl mx-auto">
@@ -68,7 +67,7 @@
                     <!-- Modal toggle -->
                     <button id="modal-btn"
                         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        type="sumbit" data-modal-toggle="authentication-modal">
+                        type="button" data-modal-toggle="authentication-modal">
                         Enter Airport Code
                     </button>
 
@@ -78,9 +77,9 @@
                         class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
                         <div class="relative w-full max-w-md px-4 h-full md:h-auto">
                             <!-- Modal content -->
-                            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
+                            <div id="modal-body" class="bg-white rounded-lg shadow relative dark:bg-gray-700">
                                 <div class="flex justify-end p-2 pl-8">
-                                    <button type="submit"
+                                    <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                                         data-modal-toggle="authentication-modal">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -96,14 +95,24 @@
                                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Select the airport
                                         codes below:</h3>
                                     <div>
-                                        <label for="departure-search-bar"
-                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Departing
-                                            From:</label>
+                                        <label for="departure-airport-code"
+                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Desired
+                                            Departure Airport:</label>
                                         <select id="departure-airport-code" class="form-select">
                                             <option value=" ">3 digit code</option>
                                         </select>
-
+                                        <label for="arrival-airport-code"
+                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Desired
+                                            Arrival Airport</label>
+                                        <select id="arrival-airport-code" class="form-select">
+                                            <option value=" ">3 digit code</option>
+                                        </select>
                                 </form>
+                                <button id="code-submit"
+                                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    type="sumbit" data-modal-toggle="authentication-modal">
+                                    Confirm Selection
+                                </button>
                             </div>
                         </div>
 
@@ -112,9 +121,18 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <script src="./assets/js/search.js"></script>
+    <div class="lists text-center">
+        <h2>Flights:</h2>
+        <ul id="flight-results">
+        </ul>
+    </div>
+    <div class="lists text-center">
+        <h2>History Lists</h2>
+        <ul id="search-history">
+        </ul>
+    </div>
+    <script src="./assets/js/script.js"></script>
 </body>
-
-</html>
