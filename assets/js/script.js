@@ -142,6 +142,9 @@ function addHistory(historicalObj) {
     historyBox.textContent = `Departure: ${historicalObj.source}\nDestination: ${historicalObj.destination}\nDate: ${historicalObj.date}`
     var removeBtn = document.createElement("button");
     removeBtn.textContent = "X";
+    historyBox.setAttribute("data-src", historicalObj.source);
+    historyBox.setAttribute("data-dest", historicalObj.destination);
+    historyBox.setAttribute("data-date", historicalObj.date);
     historyBox.append(removeBtn);
     historyEl.append(historyBox);
 }
@@ -159,6 +162,11 @@ historyEl.addEventListener("click", function (event) {
         saveHistory();
         return;
     }
+    source = event.target.getAttribute("data-src");
+    dest = event.target.getAttribute("data-dest");
+    date = event.target.getAttribute("data-date");
+    console.log(source, dest, date);
+    displayFlights(tripAdvisorAPI(source, dest, date));
 
 });
 
@@ -186,6 +194,9 @@ function getQString() {
 }
 
 async function displayFlights(flightData) {
+    while (flightListEl.children.length) {
+        flightListEl.removeChild(selectMenu.firstChild);
+    }
     flightData = await flightData;
     for (var i = 0; i < flightData.length; i++) {
         addFlight(flightData[i]);
