@@ -49,6 +49,10 @@ function init() {
     if (window.location.search) {
         getQString();
     }
+
+    var obj1 = [{ "name": "Chicago", "code": "ORD" }];
+    var obj2 = [{ "name": "Los Angeles", "code": "LAX" }];
+    handleModal(obj1, obj2);
     // handleModal(JSON.parse(localStorage.getItem("departureLocation")), JSON.parse(localStorage.getItem("arrivalLocation")));
     // addHistory();
 }
@@ -261,7 +265,7 @@ function airportSearch(cityName, airportArray) {
             console.log(data);
             var airports = data.results;
             airports.forEach(results => {
-                console.log( `City Name: ${results.city}, Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
+                console.log(`City Name: ${results.city}, Airport Name: ${results.AirportName}, Code : ${results.AirportCode}`);
                 var airport = {
                     city: results.city,
                     name: results.AirportName,
@@ -277,14 +281,14 @@ function airportSearch(cityName, airportArray) {
 function storeLocalStorage() {
     localStorage.setItem("departureLocation", JSON.stringify(departureAirportArray));
     localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray));
-    }
+}
 
 
-    document.querySelector("#search-button").onclick = function () {
+document.querySelector("#search-button").onclick = function () {
     callAirportSearch();
-    }
+}
 
-    function callAirportSearch(){
+function callAirportSearch() {
     var departureCity = departureCityInput.value;
     var arrivalCity = arrivalCityInput.value;
 
@@ -297,15 +301,15 @@ function storeLocalStorage() {
         checkInput();
     });
 }
-function checkInput(cityName, airportArray){
+function checkInput(cityName, airportArray) {
     var cityName = departureCityInput.value || arrivalCityInput.value;
-    if (departureAirportArray.includes(cityName) || arrivalAirportArray.includes(cityName)){
+    if (departureAirportArray.includes(cityName) || arrivalAirportArray.includes(cityName)) {
         airportArray.push(airport);
     }
 }
-    airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
-        localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
-    });
+airportSearch(arrivalCityInput.value, arrivalAirportArray).then(function () {
+    localStorage.setItem("arrivalLocation", JSON.stringify(arrivalAirportArray))
+});
 
 
 document.getElementById("modal-body").addEventListener("click", handleModalCode);

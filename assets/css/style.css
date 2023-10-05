@@ -140,3 +140,9 @@ p {
 #modal-btn {
     display: none;
 }
+
+#footer {
+    display:block;
+    justify-content: center;
+    
+}
