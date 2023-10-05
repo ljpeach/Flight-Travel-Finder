@@ -6,7 +6,7 @@ function handleSearchFormSubmit(event) {
   var startLocation = document.querySelector('#start-city-input').value;
   var destination = document.querySelector("#destination-city-input").value;
   var startDate = document.querySelector('#start-date').value;
-  var returnDate = document.querySelector('#return-date').value;
+  
 
   if (!startLocation) {
     console.error('You need to enter the city you are departing from!');
@@ -23,13 +23,9 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-  if (!returnDate) {
-    console.error('You need to enter the return date of your trip!');
-    return;
-  }
+  
 
-
-  var queryString = './search.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate + '&returnDate=' + returnDate
+  var queryString = './search.html?Departure=' + startLocation + '&destination=' + destination + '&startDate=' + startDate 
 
   location.assign(queryString);
 }
