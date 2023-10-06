@@ -6,7 +6,7 @@ A simple web application designed to allow users to input a desired departure an
 
 ## Product
 
-The deployed website can be found [here](https://ljpeach.github.io/project-1-oct-2023/).
+The deployed website can be found [here](https://ljpeach.github.io/Flight-Travel-Finder/).
 
 ## Project Preview
 
