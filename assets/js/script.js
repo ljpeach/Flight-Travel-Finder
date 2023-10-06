@@ -221,7 +221,7 @@ function tripAdvisorAPI(departPort, arrivePort, date) {
     var options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '20f4c54928msh25ac80477286671p191e50jsn577f5ce96dea',
+            'X-RapidAPI-Key': '91d435f6eamsh770bc5a1bee7742p175059jsn46245509db05',
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
     }
@@ -273,7 +273,7 @@ function airportSearch(cityName, airportArray) {
     return fetch(urlQuery, {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '917526c90bmsh476e293f7fe4742p1ddb08jsn2d6d6fbc32a9',
+            'x-rapidapi-key': '91d435f6eamsh770bc5a1bee7742p175059jsn46245509db05',
             'x-rapidapi-host': 'world-airports-directory.p.rapidapi.com'
         }
     })
